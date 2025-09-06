@@ -1,0 +1,38 @@
+OSRM Response (JSON)
+├─ code : string
+├─ routes : list
+│   ├─ [0] : dict (أول مسار - غالبًا الأفضل)
+│   │   ├─ distance : float (المسافة الكلية بالمتر)
+│   │   ├─ duration : float (الزمن الكلي بالثواني)
+│   │   ├─ geometry : dict (خط السير GeoJSON)
+│   │   │   ├─ type : string ("LineString")
+│   │   │   └─ coordinates : list of [lng, lat]
+│   │   ├─ legs : list
+│   │   │   ├─ [0] : dict (الجزء الأول من الرحلة)
+│   │   │   │   ├─ distance : float (المسافة بالمتر)
+│   │   │   │   ├─ duration : float (الزمن بالثواني)
+│   │   │   │   ├─ steps : list
+│   │   │   │   │   ├─ [0] : dict (خطوة 1)
+│   │   │   │   │   │   ├─ distance : float
+│   │   │   │   │   │   ├─ duration : float
+│   │   │   │   │   │   ├─ name : string (اسم الشارع)
+│   │   │   │   │   │   └─ maneuver : dict
+│   │   │   │   │   │       ├─ type : string (turn, depart, arrive…)
+│   │   │   │   │   │       └─ modifier : string (right, left…)
+│   │   │   │   │   ├─ [1] : dict (خطوة 2)
+│   │   │   │   │   │   └─ ...
+│   │   │   │   └─ ...
+│   │   │   ├─ [1] : dict (leg 2 لو موجود)
+│   │   │   │   └─ ...
+│   │   │   └─ ...
+│   │   ├─ weight : float (اختياري - تكلفة المسار)
+│   │   └─ weight_name : string (اختياري)
+│   └─ [1] : dict (مسار بديل لو alternatives=True)
+│       └─ ...
+└─ waypoints : list
+    ├─ [0] : dict (نقطة البداية)
+    │   ├─ location : [lng, lat]
+    │   └─ name : string
+    └─ [1] : dict (نقطة النهاية)
+        ├─ location : [lng, lat]
+        └─ name : string
